@@ -31,6 +31,7 @@ public class playmove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.drag = groundDrag;
         rb.freezeRotation = true;
     }
 
@@ -42,14 +43,8 @@ public class playmove : MonoBehaviour
 
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 10f + 0.2f, whatIsGround);
 
-        if (grounded)
-        {
-            rb.drag = groundDrag;
-        }
-        else
-        {
-            rb.drag = 0;
-        }
+
+     
 
     }
 
@@ -63,16 +58,7 @@ public class playmove : MonoBehaviour
         horiInp = Input.GetAxisRaw("Horizontal");
         vertInp = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && jReady && grounded)
-        {
-            jReady = false;
 
-            Jump();
-
-            Debug.Log("jumping");
-
-            Invoke(nameof(ResJump), jumpCool);
-        }
     }
 
     private void MovePlay()
@@ -98,12 +84,6 @@ public class playmove : MonoBehaviour
         }
     }
 
-    private void Jump()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-    }
 
     private void ResJump()
     {
