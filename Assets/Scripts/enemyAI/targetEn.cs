@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class targetEn : MonoBehaviour
 {
-    public float health = 100f;
+    private float health = 100f;
 
     public void TakeDam(float amount)
     {
