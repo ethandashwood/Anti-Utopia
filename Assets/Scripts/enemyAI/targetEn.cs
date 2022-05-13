@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class targetEn : MonoBehaviour
 {
-    private float health = 100f;
+    public float health = 100f;
+
 
     public void TakeDam(float amount)
     {
-        health -= amount;
+        health =- 10f;
+
         if (health <= 0f)
         {
             EnDeath();
@@ -17,6 +19,7 @@ public class targetEn : MonoBehaviour
 
     void EnDeath()
     {
+        sceneAI.playerKills += 1;
         Destroy(gameObject);
     }
 }

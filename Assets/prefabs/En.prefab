@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7385870376754607248}
   - component: {fileID: 7385870376754607249}
   - component: {fileID: 7385870376754607250}
-  - component: {fileID: 7385870376754607251}
   - component: {fileID: 7385870376754607261}
+  - component: {fileID: -8081184997602891220}
   m_Layer: 0
   m_Name: En
   m_TagString: Untagged
@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7385870376754607252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -98,9 +98,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.251768
-  m_Height: 18.491886
+  m_Height: 14.71585
   m_Direction: 1
-  m_Center: {x: -0.13890266, y: 8.245943, z: 0}
+  m_Center: {x: -0.13890266, y: 6.357925, z: 0}
 --- !u!195 &7385870376754607250
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -123,20 +123,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
---- !u!114 &7385870376754607251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7385870376754607252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df49303ae3a15c6488530b6bf4ebd689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 7967415018682100731, guid: c23495e6bbbaac54ebbba317c9e8df10, type: 3}
-  MobDistRun: 35.27
 --- !u!114 &7385870376754607261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +135,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e920172cae7d76f46a8a97c1d763fa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1000
+--- !u!114 &-8081184997602891220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385870376754607252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df49303ae3a15c6488530b6bf4ebd689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 7967415018682100731, guid: c23495e6bbbaac54ebbba317c9e8df10, type: 3}
+  MobDistRun: 60
 --- !u!1001 &7385870376801404709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,9 +213,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7566554087571369671, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5098464105240731437, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1356944241255443110, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}
       propertyPath: m_Name
       value: VectorSkin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73dc22e7bb13eed4bb84ce586b83db37, type: 3}

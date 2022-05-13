@@ -5,8 +5,9 @@ using UnityEngine;
 public class pGun : MonoBehaviour
 {
     public ParticleSystem gunflash;
-    public float dam = 30f;
+    public static float dam = 10f;
     public float range = 5000f;
+    public static int points = 0;
 
     public Camera pCam;
 
@@ -36,6 +37,7 @@ public class pGun : MonoBehaviour
             if (target != null)
             {
                 target.TakeDam(dam);
+                points += 20;
             }
         }
     }
