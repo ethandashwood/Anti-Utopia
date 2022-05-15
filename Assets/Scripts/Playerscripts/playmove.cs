@@ -9,7 +9,6 @@ public class playmove : MonoBehaviour
     public float jumpForce;
     public float jumpCool;
     public float airMult;
-    bool jReady;
 
     public float playerHeight;
     public LayerMask whatIsGround;
@@ -84,9 +83,4 @@ public class playmove : MonoBehaviour
         }
     }
 
-
-    private void ResJump()
-    {
-        jReady = true;
-    }
 }

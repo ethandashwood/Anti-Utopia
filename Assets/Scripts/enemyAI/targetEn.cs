@@ -7,18 +7,22 @@ public class targetEn : MonoBehaviour
     public float health = 100f;
 
 
-    public void TakeDam(float amount)
+    public void TakeDam()
     {
-        health =- 10f;
+        health -= 100f;
+        Debug.Log(health);
+        Debug.Log("ouch");
 
-        if (health <= 0f)
+        if (health < 0f)
         {
             EnDeath();
+            Debug.Log("Dead");
         }
     }
 
     void EnDeath()
     {
+        sceneAI.pKills += 1;
         sceneAI.playerKills += 1;
         Destroy(gameObject);
     }

@@ -10,24 +10,42 @@ public class sceneAI : MonoBehaviour
 
     public static int gPoints;
     public static int playerKills = 0;
+    public static int pKills = 0;
+    public static int roundC = 0;
 
     void Start()
     {
         SpawnEnemies();
+        Respawnplay();
     }
 
     void Update()
     {
 
-
-        if (playerKills >= 7)
+        if (pKills >= 9)
         {
             AddPoints();
             SpawnEnemies();
 
-            playerKills = 0;
+            pKills = 0;
+
+            roundC += 1;
+            Debug.Log(roundC);
         }
 
+        if (roundC == 2)
+        {
+            AddPoints();
+            SpawnEnemies();
+            Respawnplay();
+            roundC = 0;
+        }
+
+    }
+
+    void Respawnplay()
+    {
+        player.transform.position = new Vector3(-135, 4, 17);
     }
 
 
@@ -40,17 +58,17 @@ public class sceneAI : MonoBehaviour
     void SpawnEnemies()
     {
 
-        player.transform.position = new Vector3(-135, 4 ,17);
-
-        Instantiate(enemyPre, new Vector3(47, 2, 104), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(64, 2, -28), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(-75, 2, -78), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(-1, 2, -75), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(64, 2, -81), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(-111, 2, 21), Quaternion.identity);
-        Instantiate(enemyPre, new Vector3(-74, 2, -16), Quaternion.identity);
 
 
+       Instantiate(enemyPre, new Vector3(139, 2, 52), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(110, 2, 137), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(86, 2, -114), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(-107, 2, 88), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(-44, 2, 88), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(-113, 2, -35), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(-47, 2, -104), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(85, 2, 159), Quaternion.identity);
+       Instantiate(enemyPre, new Vector3(52, 2, 167), Quaternion.identity);
 
     }
 

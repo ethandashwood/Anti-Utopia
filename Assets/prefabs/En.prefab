@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7385870376754607249}
   - component: {fileID: 7385870376754607250}
   - component: {fileID: 7385870376754607261}
-  - component: {fileID: -8081184997602891220}
+  - component: {fileID: 3974477405894870129}
   m_Layer: 0
   m_Name: En
   m_TagString: Untagged
@@ -111,11 +111,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.55
-  m_Speed: 16.65
-  m_Acceleration: 8
+  m_Speed: 11
+  m_Acceleration: 16.9
   avoidancePriority: 95
-  m_AngularSpeed: 120
-  m_StoppingDistance: 5.47
+  m_AngularSpeed: 154.4
+  m_StoppingDistance: 40
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1000
---- !u!114 &-8081184997602891220
+--- !u!114 &3974477405894870129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7385870376754607252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df49303ae3a15c6488530b6bf4ebd689, type: 3}
+  m_Script: {fileID: 11500000, guid: d3e1ecc0550cc9b4bb70cc598682f451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7967415018682100731, guid: c23495e6bbbaac54ebbba317c9e8df10, type: 3}
-  MobDistRun: 60
+  enemy: {fileID: 7385870376754607250}
+  Player: {fileID: 7967415018682100228, guid: c23495e6bbbaac54ebbba317c9e8df10, type: 3}
+  playt: {fileID: 0}
 --- !u!1001 &7385870376801404709
 PrefabInstance:
   m_ObjectHideFlags: 0

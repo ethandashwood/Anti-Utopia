@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemySwitch : MonoBehaviour
 {
+    public NavMeshAgent enemy;
+    public Transform Player;
+    public GameObject playt;
+    private float speed;
 
-    private float timeToChangeDirection;
-
-    public GameObject tracker;
 
     enum EnemyStates
     {
@@ -20,7 +22,8 @@ public class enemySwitch : MonoBehaviour
 
     void Start()
     {
-        enemyState = EnemyStates.Idle;
+        Player = GameObject.Find("player").transform;
+        enemyState = EnemyStates.Chase;
     }
 
     void Update()
@@ -44,18 +47,11 @@ public class enemySwitch : MonoBehaviour
     void IdleState()
     {
 
-        timeToChangeDirection -= Time.deltaTime;
- 
-        if (timeToChangeDirection <= 0) 
-        {
-            ChangeDirection();
-        }
- 
     }
 
     void ChaseState()
     {
-
+        enemy.SetDestination(Player.position);
     }
 
     void AttackState()
@@ -64,16 +60,6 @@ public class enemySwitch : MonoBehaviour
     }
     
 
-    private void ChangeDirection() 
-    {
-        float pSpeed = 10.0f;
 
-        float angle1 = Random.Range(0f, 360f);
-        float angle2 = Random.Range(0f, 360f);
-
-        Vector3 moveAng = new Vector3(angle1, 0 , 0);
-        transform.Translate (moveAng * pSpeed * Time.deltaTime);
-        timeToChangeDirection = 1.5f;
-    }
 
 }
