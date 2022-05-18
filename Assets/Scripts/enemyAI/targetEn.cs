@@ -9,7 +9,7 @@ public class targetEn : MonoBehaviour
 
     public void TakeDam()
     {
-        health -= 100f;
+        health -= 300f;
         Debug.Log(health);
         Debug.Log("ouch");
 

@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,8 +36,9 @@ public class sceneAI : MonoBehaviour
         if (roundC == 2)
         {
             AddPoints();
-            SpawnEnemies();
+           // SpawnEnemies();
             Respawnplay();
+            pKills = 0;
             roundC = 0;
         }
 
