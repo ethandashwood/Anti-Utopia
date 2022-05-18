@@ -13,7 +13,7 @@ public class pGun : MonoBehaviour
 
     void Start()
     {
-        
+        points = 0;
     }
 
     void Update()

@@ -1,22 +1,32 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class sceneAI : MonoBehaviour
 {
 
     public GameObject enemyPre;
     public GameObject player;
+    public GameObject reset;
 
     public static int gPoints;
     public static int playerKills = 0;
     public static int pKills = 0;
     public static int roundC = 0;
 
+    public static bool dead = false;
+
+
     void Start()
     {
+        gPoints = 0;
+        playerKills = 0;
+        pKills = 0;
+        roundC = 0;
         SpawnEnemies();
         Respawnplay();
+
     }
 
     void Update()
@@ -42,6 +52,17 @@ public class sceneAI : MonoBehaviour
             roundC = 0;
         }
 
+        if(PlayerHealth.pHealth < 0 && dead == true)
+        {
+            //Time.timeScale = 0f;
+            reset.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            dead = false;
+        }
+
+
     }
 
     void Respawnplay()
@@ -56,10 +77,9 @@ public class sceneAI : MonoBehaviour
         gPoints += pGun.points;
     }
 
+
     void SpawnEnemies()
     {
-
-
 
        Instantiate(enemyPre, new Vector3(139, 2, 52), Quaternion.identity);
        Instantiate(enemyPre, new Vector3(110, 2, 137), Quaternion.identity);

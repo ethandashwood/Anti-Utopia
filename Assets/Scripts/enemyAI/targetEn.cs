@@ -5,18 +5,23 @@ using UnityEngine;
 public class targetEn : MonoBehaviour
 {
     public float health = 100f;
+    public static bool beingAttack = false;
 
+    void Start()
+    {
+        beingAttack = false;
+    }
 
     public void TakeDam()
     {
+        beingAttack = true;
         health -= 300f;
         Debug.Log(health);
-        Debug.Log("ouch");
 
         if (health < 0f)
         {
+            beingAttack = false;
             EnDeath();
-            Debug.Log("Dead");
         }
     }
 

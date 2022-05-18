@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
-    public Transform playTar;
+    public GameObject playTar;
 
     public float bullSpeed;
     private Transform player;
@@ -16,6 +16,7 @@ public class projectile : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector3(player.position.x, player.position.y, player.position.z);
+        playTar = GameObject.Find("playOB");
 
         shot = false;
 
@@ -33,7 +34,7 @@ public class projectile : MonoBehaviour
         if (shot = true)
         {
             shot = false;
-            PlayerHealth.pHealth -= 100;
+            PlayerHealth.pHealth -= 30;
             Debug.Log(PlayerHealth.pHealth);
             Destroy();
 
@@ -44,16 +45,15 @@ public class projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            shot = true;
 
-        }
+        //if (collision.gameObject.tag == "player")
+       // {
+            //shot = true;
+       // }
     }
 
     void Destroy()
     {
         Destroy(gameObject);
-        Debug.Log("WEE");
     }
 }

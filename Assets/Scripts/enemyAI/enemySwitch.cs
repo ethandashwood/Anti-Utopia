@@ -5,10 +5,18 @@ using UnityEngine.AI;
 
 public class enemySwitch : MonoBehaviour
 {
+    private float timebshots;
+    public float stimebshots;
+
     public NavMeshAgent enemy;
     public Transform Player;
+
     public GameObject playt;
+    public GameObject proj;
     private float speed;
+    public float enRange = 60;
+    //public Transform ene;
+
 
 
     enum EnemyStates
@@ -22,12 +30,19 @@ public class enemySwitch : MonoBehaviour
 
     void Start()
     {
+
         Player = GameObject.Find("player").transform;
         enemyState = EnemyStates.Chase;
+        enemy = GetComponent<NavMeshAgent>();
+        timebshots = stimebshots;
+
     }
 
     void Update()
     {
+
+        CheckAttack();
+
         if (enemyState == EnemyStates.Idle)
         {
             IdleState();
@@ -42,6 +57,8 @@ public class enemySwitch : MonoBehaviour
         {
             AttackState();
         }
+
+
     }
 
     void IdleState()
@@ -52,12 +69,47 @@ public class enemySwitch : MonoBehaviour
     void ChaseState()
     {
         enemy.SetDestination(Player.position);
+
+        //if (speed == 0.0f)
+       // {
+           // enemyState = EnemyStates.Attack;
+      //  }
     }
 
     void AttackState()
     {
+        if (timebshots <= 0)
+        {
+            Instantiate(proj, new Vector3(0,0,0), Quaternion.identity);            
+            timebshots = stimebshots;
+        }
+        else
+        {
+            timebshots -= Time.deltaTime;
 
+        }
+        //Debug.Log("Attacking player");
+    }
 
+    void CheckAttack()
+    {
+
+        if (targetEn.beingAttack!)
+        {
+            //Debug.Log("being attacked");
+            enemyState = EnemyStates.Attack;
+        }
+        else
+        {
+            enemyState = EnemyStates.Chase;
+        }
+
+        /*RaycastHit hit;
+        if (Physics.SphereCast(ene.transform.position, ene.transform.forward, out hit, enRange))
+        {
+            Debug.Log(hit.transform.name);
+        }
+        */
     }
     
 

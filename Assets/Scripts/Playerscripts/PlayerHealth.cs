@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (pHealth < 0)
         {
+            sceneAI.dead = true;
             Debug.Log("player dead");
         }
     }
