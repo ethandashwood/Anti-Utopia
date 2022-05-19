@@ -7,6 +7,10 @@ public class targetEn : MonoBehaviour
     public float health = 100f;
     public static bool beingAttack = false;
 
+    public Transform enemyPos;
+
+    public GameObject blood;
+
     void Start()
     {
         beingAttack = false;
@@ -17,6 +21,7 @@ public class targetEn : MonoBehaviour
         beingAttack = true;
         health -= 300f;
         Debug.Log(health);
+        Instantiate(blood, enemyPos.position, Quaternion.identity);
 
         if (health < 0f)
         {

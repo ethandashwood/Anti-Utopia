@@ -12,6 +12,9 @@ public class gameUI : MonoBehaviour
     [SerializeField]
     private Text playHealth;
 
+    public GameObject escapeO;
+
+
     void Start()
     {
         gameScore.text = "Game Score: " + 0;
@@ -24,6 +27,29 @@ public class gameUI : MonoBehaviour
     {
         updateScore();
 
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            OnEscape();
+        }
+
+
+    }
+
+    public void OnEscape()
+    {
+        escapeO.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void BackEsc()
+    {
+        escapeO.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void updateScore()

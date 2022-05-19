@@ -18,6 +18,16 @@ public class sceneAI : MonoBehaviour
     public static bool dead = false;
 
 
+    //difficulty Vars
+
+    public static float addedHealth;
+    public static float playerDamage;
+    public static float enemyDamage;
+    public static float enemyTimeBShots;
+
+    public static int compareScore;
+
+
     void Start()
     {
         gPoints = 0;
@@ -26,11 +36,12 @@ public class sceneAI : MonoBehaviour
         roundC = 0;
         SpawnEnemies();
         Respawnplay();
-
+        Time.timeScale = 1f;
     }
 
     void Update()
     {
+
 
         if (pKills >= 9)
         {
@@ -50,6 +61,7 @@ public class sceneAI : MonoBehaviour
             Respawnplay();
             pKills = 0;
             roundC = 0;
+            PlayerHealth.pHealth += 500;
         }
 
         if(PlayerHealth.pHealth < 0 && dead == true)
@@ -90,6 +102,60 @@ public class sceneAI : MonoBehaviour
        Instantiate(enemyPre, new Vector3(-47, 2, -104), Quaternion.identity);
        Instantiate(enemyPre, new Vector3(85, 2, 159), Quaternion.identity);
        Instantiate(enemyPre, new Vector3(52, 2, 167), Quaternion.identity);
+
+    }
+
+    //checks the player's difficulty
+
+    void CheckDifficulty()
+    {
+
+
+    }
+
+    // Player Difficulty levels and variables
+
+    void SuperEase()
+    {
+        addedHealth = 1100f;
+        playerDamage = 500f;
+        enemyDamage = 5f;
+        enemyTimeBShots = 4;
+    }
+
+    void Easy()
+    {
+        addedHealth = 900f;
+        playerDamage = 450f;
+        enemyDamage = 8f;
+        enemyTimeBShots = 3.3;
+
+    }
+
+    void Medium()
+    {
+        addedHealth = 800f;
+        playerDamage = 400f;
+        enemyDamage = 10f;
+        enemyTimeBShots = 3;
+
+    }
+
+    void Skilled()
+    {
+        addedHealth = 600f;
+        playerDamage = 250f;
+        enemyDamage = 15f;
+        enemyTimeBShots = 2;
+
+    }
+
+    void SuperSkilled()
+    {
+        addedHealth = 500f;
+        playerDamage = 180f;
+        enemyDamage = 17f;
+        enemyTimeBShots = 1.7;
 
     }
 

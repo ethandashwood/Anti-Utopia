@@ -34,7 +34,7 @@ public class projectile : MonoBehaviour
         if (shot = true)
         {
             shot = false;
-            PlayerHealth.pHealth -= 30;
+            PlayerHealth.pHealth -= 10;
             Debug.Log(PlayerHealth.pHealth);
             Destroy();
 

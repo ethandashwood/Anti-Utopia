@@ -16,7 +16,7 @@ public class enemySwitch : MonoBehaviour
     private float speed;
     public float enRange = 60;
     //public Transform ene;
-
+    AudioSource eneGun;
 
 
     enum EnemyStates
@@ -35,6 +35,7 @@ public class enemySwitch : MonoBehaviour
         enemyState = EnemyStates.Chase;
         enemy = GetComponent<NavMeshAgent>();
         timebshots = stimebshots;
+        eneGun = GetComponent<AudioSource>();
 
     }
 
@@ -80,6 +81,7 @@ public class enemySwitch : MonoBehaviour
     {
         if (timebshots <= 0)
         {
+            eneGun.Play();
             Instantiate(proj, new Vector3(0,0,0), Quaternion.identity);            
             timebshots = stimebshots;
         }
