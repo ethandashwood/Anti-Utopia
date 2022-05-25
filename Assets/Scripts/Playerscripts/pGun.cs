@@ -71,6 +71,11 @@ public class pGun : MonoBehaviour
                 target.TakeDam();
                 points += 20;
             }
+            else
+            {
+                points -= 5;
+
+            }
         }
     }
     

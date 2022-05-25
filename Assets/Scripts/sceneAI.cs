@@ -120,7 +120,7 @@ public class sceneAI : MonoBehaviour
         addedHealth = 1100f;
         playerDamage = 500f;
         enemyDamage = 5f;
-        enemyTimeBShots = 4;
+        enemyTimeBShots = 4f;
     }
 
     void Easy()
@@ -128,7 +128,7 @@ public class sceneAI : MonoBehaviour
         addedHealth = 900f;
         playerDamage = 450f;
         enemyDamage = 8f;
-        enemyTimeBShots = 3.3;
+        enemyTimeBShots = 3.3f;
 
     }
 
@@ -137,7 +137,7 @@ public class sceneAI : MonoBehaviour
         addedHealth = 800f;
         playerDamage = 400f;
         enemyDamage = 10f;
-        enemyTimeBShots = 3;
+        enemyTimeBShots = 3f;
 
     }
 
@@ -146,7 +146,7 @@ public class sceneAI : MonoBehaviour
         addedHealth = 600f;
         playerDamage = 250f;
         enemyDamage = 15f;
-        enemyTimeBShots = 2;
+        enemyTimeBShots = 2f;
 
     }
 
@@ -155,7 +155,7 @@ public class sceneAI : MonoBehaviour
         addedHealth = 500f;
         playerDamage = 180f;
         enemyDamage = 17f;
-        enemyTimeBShots = 1.7;
+        enemyTimeBShots = 1.7f;
 
     }
 
