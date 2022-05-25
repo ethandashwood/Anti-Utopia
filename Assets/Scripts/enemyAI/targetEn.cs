@@ -11,6 +11,8 @@ public class targetEn : MonoBehaviour
 
     public GameObject blood;
 
+    public Vector3 hitOffset;
+
     void Start()
     {
         beingAttack = false;
@@ -21,7 +23,7 @@ public class targetEn : MonoBehaviour
         beingAttack = true;
         health -= 300f;
         Debug.Log(health);
-        Instantiate(blood, enemyPos.position, Quaternion.identity);
+        Instantiate(blood, enemyPos.position + hitOffset, Quaternion.identity);
 
         if (health < 0f)
         {
