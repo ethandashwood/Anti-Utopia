@@ -34,7 +34,7 @@ public class enemySwitch : MonoBehaviour
         Player = GameObject.Find("player").transform;
         enemyState = EnemyStates.Chase;
         enemy = GetComponent<NavMeshAgent>();
-        timebshots = stimebshots;
+        timebshots = sceneAI.enemyTimeBShots;
         eneGun = GetComponent<AudioSource>();
 
     }

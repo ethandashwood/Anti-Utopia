@@ -14,6 +14,7 @@ public class sceneAI : MonoBehaviour
     public static int playerKills = 0;
     public static int pKills = 0;
     public static int roundC = 0;
+    public static int rounds = 1;
 
     public static bool dead = false;
 
@@ -25,11 +26,17 @@ public class sceneAI : MonoBehaviour
     public static float enemyDamage;
     public static float enemyTimeBShots;
 
-    public static int compareScore;
+    public static int sEasScore = 0;
+    public static int easScore = 0;
+    public static int midScore = 0;
+    public static int hardScore = 0;
+    public static int superHardScore = 0;
 
+    public static string disDiff;
 
     void Start()
     {
+        rounds = 1;
         gPoints = 0;
         playerKills = 0;
         pKills = 0;
@@ -37,15 +44,33 @@ public class sceneAI : MonoBehaviour
         SpawnEnemies();
         Respawnplay();
         Time.timeScale = 1f;
+
+        sEasScore = 800;
+        easScore = 1000;
+        midScore = 1100;
+        hardScore = 1250;
+        superHardScore = 1350;
+
+        Medium();
+
     }
 
     void Update()
     {
+        if (Input.GetKey("k"))
+        {
+            gPoints += 100;
+        }
 
+        if (Input.GetKey("m"))
+        {
+            gPoints -= 100;
+
+        }
 
         if (pKills >= 9)
         {
-            AddPoints();
+            // AddPoints();
             SpawnEnemies();
 
             pKills = 0;
@@ -56,17 +81,36 @@ public class sceneAI : MonoBehaviour
 
         if (roundC == 2)
         {
-            AddPoints();
-           // SpawnEnemies();
+            // AddPoints();
             Respawnplay();
             pKills = 0;
             roundC = 0;
-            PlayerHealth.pHealth += 500;
+            PlayerHealth.pHealth += addedHealth;
+            if (PlayerHealth.pHealth > 1000)
+            {
+                PlayerHealth.pHealth = 1000;
+            }
+
+            gameTimer.timerGame = 20;
+
+            projectile.enDam += 2;
+
+            addCompScore();
+            CheckDifficulty();
         }
 
         if(PlayerHealth.pHealth < 0 && dead == true)
         {
             //Time.timeScale = 0f;
+            reset.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            dead = false;
+        }
+
+        if (gameTimer.timerGame < 0)
+        {
             reset.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -82,13 +126,21 @@ public class sceneAI : MonoBehaviour
         player.transform.position = new Vector3(-135, 4, 17);
     }
 
+    void addCompScore()
+    {
+        sEasScore += 800;
+        easScore += 1000;
+        midScore += 1100;
+        hardScore += 1250;
+        superHardScore += 1350;
+    }
 
 
-    void AddPoints()
+    /*void AddPoints()
     {
         gPoints += pGun.points;
     }
-
+    */
 
     void SpawnEnemies()
     {
@@ -109,8 +161,30 @@ public class sceneAI : MonoBehaviour
 
     void CheckDifficulty()
     {
+        if (gPoints > sEasScore)
+        {
+            SuperEase();
+        }
 
+        if (gPoints > easScore)
+        {
+            Easy();
+        }
 
+        if (gPoints > midScore)
+        {
+            Medium();
+        }
+
+        if (gPoints > hardScore)
+        {
+            Skilled();
+        }
+
+        if (gPoints > superHardScore)
+        {
+            SuperSkilled();
+        }
     }
 
     // Player Difficulty levels and variables
@@ -121,6 +195,8 @@ public class sceneAI : MonoBehaviour
         playerDamage = 500f;
         enemyDamage = 5f;
         enemyTimeBShots = 4f;
+
+        disDiff = ("Super Easy");
     }
 
     void Easy()
@@ -130,6 +206,7 @@ public class sceneAI : MonoBehaviour
         enemyDamage = 8f;
         enemyTimeBShots = 3.3f;
 
+        disDiff = ("Easy");
     }
 
     void Medium()
@@ -139,6 +216,7 @@ public class sceneAI : MonoBehaviour
         enemyDamage = 10f;
         enemyTimeBShots = 3f;
 
+        disDiff = ("Average");
     }
 
     void Skilled()
@@ -148,6 +226,7 @@ public class sceneAI : MonoBehaviour
         enemyDamage = 15f;
         enemyTimeBShots = 2f;
 
+        disDiff = ("Skilled");
     }
 
     void SuperSkilled()
@@ -157,6 +236,7 @@ public class sceneAI : MonoBehaviour
         enemyDamage = 17f;
         enemyTimeBShots = 1.7f;
 
+        disDiff = ("Super Skilled");
     }
 
 }

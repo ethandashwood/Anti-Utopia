@@ -21,7 +21,7 @@ public class targetEn : MonoBehaviour
     public void TakeDam()
     {
         beingAttack = true;
-        health -= 300f;
+        health -= sceneAI.playerDamage;
         Debug.Log(health);
         Instantiate(blood, enemyPos.position + hitOffset, Quaternion.identity);
 
@@ -37,5 +37,6 @@ public class targetEn : MonoBehaviour
         sceneAI.pKills += 1;
         sceneAI.playerKills += 1;
         Destroy(gameObject);
+        gameTimer.timerGame += 5;
     }
 }

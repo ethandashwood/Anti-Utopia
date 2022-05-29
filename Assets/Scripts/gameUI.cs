@@ -11,6 +11,10 @@ public class gameUI : MonoBehaviour
     private Text playKills;
     [SerializeField]
     private Text playHealth;
+    [SerializeField]
+    private Text timer;
+    [SerializeField]
+    private Text difficulty;
 
     public GameObject escapeO;
 
@@ -20,6 +24,8 @@ public class gameUI : MonoBehaviour
         gameScore.text = "Game Score: " + 0;
         playKills.text = "Kills: " + 0;
         playHealth.text = "Health: " + 0;
+        timer.text = "Time Left: " + 0;
+        difficulty.text = "difficulty: ";
 
     }
 
@@ -56,8 +62,11 @@ public class gameUI : MonoBehaviour
     {
 
         playKills.text = "Kills " + sceneAI.playerKills.ToString();
-        gameScore.text = "Points " + pGun.points.ToString();
+        gameScore.text = "Points " + sceneAI.gPoints.ToString();
         playHealth.text = "Health " + PlayerHealth.pHealth.ToString();
+        difficulty.text = "Difficulty " + sceneAI.disDiff;
+        timer.text = (gameTimer.timerGame / 1).ToString();
+
 
     }
 }

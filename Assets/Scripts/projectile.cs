@@ -10,6 +10,9 @@ public class projectile : MonoBehaviour
     private Transform player;
     private Vector3 target;
     bool shot;
+
+    public static float enDam = 10;
+    
     
 
     void Start()
@@ -34,10 +37,9 @@ public class projectile : MonoBehaviour
         if (shot = true)
         {
             shot = false;
-            PlayerHealth.pHealth -= 10;
+            PlayerHealth.pHealth -= sceneAI.enemyDamage;
             Debug.Log(PlayerHealth.pHealth);
             Destroy();
-
         }
 
 

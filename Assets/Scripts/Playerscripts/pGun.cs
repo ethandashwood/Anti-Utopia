@@ -7,7 +7,6 @@ public class pGun : MonoBehaviour
     public ParticleSystem gunflash;
     public static float dam = 200f;
     public float range = 5000f;
-    public static int points = 0;
     public Animator fireAnim;
 
     public float shotTime;
@@ -19,7 +18,6 @@ public class pGun : MonoBehaviour
 
     void Start()
     {
-        points = 0;
         shotSound = GetComponent<AudioSource>();
         shotTimer = shotTime;
 
@@ -69,11 +67,12 @@ public class pGun : MonoBehaviour
             if (target != null)
             {
                 target.TakeDam();
-                points += 20;
+                sceneAI.gPoints += 20;
             }
             else
             {
-                points -= 5;
+                sceneAI.gPoints -= 5;
+                gameTimer.timerGame -= 1;
 
             }
         }

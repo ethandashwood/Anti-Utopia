@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e1ecc0550cc9b4bb70cc598682f451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stimebshots: 2
+  stimebshots: 1.2
   enemy: {fileID: 7385870376754607250}
   Player: {fileID: 7967415018682100228, guid: c23495e6bbbaac54ebbba317c9e8df10, type: 3}
   playt: {fileID: 0}
