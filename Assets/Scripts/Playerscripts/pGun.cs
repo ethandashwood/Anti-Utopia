@@ -14,6 +14,8 @@ public class pGun : MonoBehaviour
 
     AudioSource shotSound;
 
+    public GameObject light;
+
     public Camera pCam;
 
     void Start()
@@ -45,12 +47,14 @@ public class pGun : MonoBehaviour
 
     IEnumerator Shooting()
     {
+        light.SetActive(true);
         fireAnim.SetBool("isShot", true);
-        Debug.Log("bruh");
-        yield return new WaitForSeconds(1/2);
+        yield return new WaitForSeconds(1/10);
         fireAnim.SetBool("isShot", false);
-        Debug.Log("lol");
+        light.SetActive(false);
+
     }
+
 
     void Shot()
     {
@@ -66,6 +70,7 @@ public class pGun : MonoBehaviour
             targetEn target = hit.transform.GetComponent<targetEn>();
             if (target != null)
             {
+                Debug.Log("hitting enemy");
                 target.TakeDam();
                 sceneAI.gPoints += 20;
             }

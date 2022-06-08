@@ -13,7 +13,7 @@ public class gameTimer : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(timerGame);
+
         if (timerGame > 0)
         {
             timerGame -= Time.deltaTime;

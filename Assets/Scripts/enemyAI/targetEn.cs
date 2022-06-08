@@ -10,12 +10,21 @@ public class targetEn : MonoBehaviour
     public Transform enemyPos;
 
     public GameObject blood;
+    //private GameObject self;
 
     public Vector3 hitOffset;
+    public Transform enemyTar;
 
     void Start()
     {
         beingAttack = false;
+    }
+
+    void Update()
+    {
+        //transform.position = enemyTar.position;
+        //transform.rotation = enemyTar.rotation;
+
     }
 
     public void TakeDam()

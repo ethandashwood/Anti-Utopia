@@ -15,6 +15,7 @@ public class sceneAI : MonoBehaviour
     public static int pKills = 0;
     public static int roundC = 0;
     public static int rounds = 1;
+    public static int timeAdd = 0;
 
     public static bool dead = false;
 
@@ -45,11 +46,11 @@ public class sceneAI : MonoBehaviour
         Respawnplay();
         Time.timeScale = 1f;
 
-        sEasScore = 800;
-        easScore = 1000;
-        midScore = 1100;
-        hardScore = 1250;
-        superHardScore = 1350;
+        sEasScore = 0;
+        easScore = 0;
+        midScore = 0;
+        hardScore = 0;
+        superHardScore = 0;
 
         Medium();
 
@@ -57,20 +58,10 @@ public class sceneAI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey("k"))
-        {
-            gPoints += 100;
-        }
-
-        if (Input.GetKey("m"))
-        {
-            gPoints -= 100;
-
-        }
+        timeAdd = Mathf.RoundToInt(gameTimer.timerGame);
 
         if (pKills >= 9)
         {
-            // AddPoints();
             SpawnEnemies();
 
             pKills = 0;
@@ -81,67 +72,88 @@ public class sceneAI : MonoBehaviour
 
         if (roundC == 2)
         {
-            // AddPoints();
-            Respawnplay();
             pKills = 0;
             roundC = 0;
-            PlayerHealth.pHealth += addedHealth;
-            if (PlayerHealth.pHealth > 1000)
-            {
-                PlayerHealth.pHealth = 1000;
-            }
 
-            gameTimer.timerGame = 20;
-
-            projectile.enDam += 2;
-
+            Respawnplay();
+            HealthReset();
             addCompScore();
             CheckDifficulty();
+            TimerReset();
+
+            gPoints += timeAdd;
+            projectile.enDam += 2;
+            rounds += 1;
         }
 
-        if(PlayerHealth.pHealth < 0 && dead == true)
+        CheckHealthDeath();
+        CheckTimeDeath();
+
+    }
+
+
+
+    // Checks if health is zero
+    void CheckHealthDeath()
+    {
+        if (PlayerHealth.pHealth < 0 && dead == true)
         {
-            //Time.timeScale = 0f;
             reset.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
             dead = false;
         }
+    }
 
+    //Checks if timer is zero
+    void CheckTimeDeath()
+    {
         if (gameTimer.timerGame < 0)
         {
             reset.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
+            Time.timeScale = 0f;
+
             dead = false;
         }
-
-
     }
 
+    // Resets / Adds player's Health
+    void HealthReset()
+    {
+        PlayerHealth.pHealth += addedHealth;
+        if (PlayerHealth.pHealth > 1000)
+        {
+            PlayerHealth.pHealth = 1000;
+        }
+    }
+
+    // Resets Player position
     void Respawnplay()
     {
         player.transform.position = new Vector3(-135, 4, 17);
     }
 
+    // Adds comparison score for next round
     void addCompScore()
     {
-        sEasScore += 800;
-        easScore += 1000;
-        midScore += 1100;
-        hardScore += 1250;
-        superHardScore += 1350;
+        sEasScore += 700;
+        easScore += 900;
+        midScore += 1000;
+        hardScore += 1300;
+        superHardScore += 1500;
     }
 
-
-    /*void AddPoints()
+    // Resets Timer
+    void TimerReset()
     {
-        gPoints += pGun.points;
+        gameTimer.timerGame = 20;
     }
-    */
 
+    // Respawns enemies
     void SpawnEnemies()
     {
 
@@ -158,7 +170,6 @@ public class sceneAI : MonoBehaviour
     }
 
     //checks the player's difficulty
-
     void CheckDifficulty()
     {
         if (gPoints > sEasScore)
@@ -188,13 +199,12 @@ public class sceneAI : MonoBehaviour
     }
 
     // Player Difficulty levels and variables
-
     void SuperEase()
     {
         addedHealth = 1100f;
         playerDamage = 500f;
-        enemyDamage = 5f;
-        enemyTimeBShots = 4f;
+        enemyDamage = 35f;
+        enemyTimeBShots = 3f;
 
         disDiff = ("Super Easy");
     }
@@ -202,9 +212,9 @@ public class sceneAI : MonoBehaviour
     void Easy()
     {
         addedHealth = 900f;
-        playerDamage = 450f;
-        enemyDamage = 8f;
-        enemyTimeBShots = 3.3f;
+        playerDamage = 333.3f;
+        enemyDamage = 45f;
+        enemyTimeBShots = 2.8f;
 
         disDiff = ("Easy");
     }
@@ -212,9 +222,9 @@ public class sceneAI : MonoBehaviour
     void Medium()
     {
         addedHealth = 800f;
-        playerDamage = 400f;
-        enemyDamage = 10f;
-        enemyTimeBShots = 3f;
+        playerDamage = 260f;
+        enemyDamage = 60f;
+        enemyTimeBShots = 2.2f;
 
         disDiff = ("Average");
     }
@@ -222,8 +232,8 @@ public class sceneAI : MonoBehaviour
     void Skilled()
     {
         addedHealth = 600f;
-        playerDamage = 250f;
-        enemyDamage = 15f;
+        playerDamage = 230f;
+        enemyDamage = 90f;
         enemyTimeBShots = 2f;
 
         disDiff = ("Skilled");
@@ -232,9 +242,9 @@ public class sceneAI : MonoBehaviour
     void SuperSkilled()
     {
         addedHealth = 500f;
-        playerDamage = 180f;
-        enemyDamage = 17f;
-        enemyTimeBShots = 1.7f;
+        playerDamage = 200f;
+        enemyDamage = 100f;
+        enemyTimeBShots = 2f;
 
         disDiff = ("Super Skilled");
     }

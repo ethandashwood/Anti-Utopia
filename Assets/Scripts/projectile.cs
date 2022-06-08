@@ -18,7 +18,7 @@ public class projectile : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = new Vector3(player.position.x, player.position.y, player.position.z);
+
         playTar = GameObject.Find("playOB");
 
         shot = false;
@@ -28,6 +28,7 @@ public class projectile : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, bullSpeed * Time.deltaTime);
+        target = new Vector3(player.position.x, player.position.y, player.position.z);
 
         if (transform.position.x == target.x || transform.position.y == target.y || transform.position.z == target.z)
         {

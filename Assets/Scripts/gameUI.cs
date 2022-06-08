@@ -15,8 +15,11 @@ public class gameUI : MonoBehaviour
     private Text timer;
     [SerializeField]
     private Text difficulty;
+    [SerializeField]
+    private Text roundCount;
 
     public GameObject escapeO;
+
 
 
     void Start()
@@ -26,7 +29,7 @@ public class gameUI : MonoBehaviour
         playHealth.text = "Health: " + 0;
         timer.text = "Time Left: " + 0;
         difficulty.text = "difficulty: ";
-
+        //roundCount.text;
     }
 
     void Update()
@@ -38,7 +41,6 @@ public class gameUI : MonoBehaviour
         {
             OnEscape();
         }
-
 
     }
 
@@ -63,9 +65,11 @@ public class gameUI : MonoBehaviour
 
         playKills.text = "Kills " + sceneAI.playerKills.ToString();
         gameScore.text = "Points " + sceneAI.gPoints.ToString();
-        playHealth.text = "Health " + PlayerHealth.pHealth.ToString();
+        playHealth.text = (PlayerHealth.pHealth / 10).ToString() + "%";
         difficulty.text = "Difficulty " + sceneAI.disDiff;
-        timer.text = (gameTimer.timerGame / 1).ToString();
+        timer.text = "TIME: " + (Mathf.Round(gameTimer.timerGame)).ToString();
+
+        roundCount.text = sceneAI.rounds.ToString();
 
 
     }

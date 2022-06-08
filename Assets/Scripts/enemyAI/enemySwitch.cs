@@ -10,13 +10,26 @@ public class enemySwitch : MonoBehaviour
 
     public NavMeshAgent enemy;
     public Transform Player;
+    public Transform enemyPos;
+    public Animator enemyAnim;
 
-    public GameObject playt;
+
+    public GameObject gunLight;
+    public GameObject enemyL;
     public GameObject proj;
     private float speed;
     public float enRange = 60;
     //public Transform ene;
     AudioSource eneGun;
+
+    public LayerMask whatIsPlayer;
+
+    public bool attackInRange;
+    public float attackRange;
+
+    bool attacking = false;
+
+    public ParticleSystem gunflash;
 
 
     enum EnemyStates
@@ -37,6 +50,9 @@ public class enemySwitch : MonoBehaviour
         timebshots = sceneAI.enemyTimeBShots;
         eneGun = GetComponent<AudioSource>();
 
+        speed = 3;
+
+        enemyAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -59,7 +75,12 @@ public class enemySwitch : MonoBehaviour
             AttackState();
         }
 
+        Vector3 targetDir = Player.position - transform.position;
+        float stepSpeed = speed * Time.deltaTime;
 
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, stepSpeed, 0.0f);
+
+        transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     void IdleState()
@@ -70,51 +91,65 @@ public class enemySwitch : MonoBehaviour
     void ChaseState()
     {
         enemy.SetDestination(Player.position);
-
-        //if (speed == 0.0f)
-       // {
-           // enemyState = EnemyStates.Attack;
-      //  }
+        enemyAnim.Play("walking");
     }
 
     void AttackState()
     {
+
+
         if (timebshots <= 0)
         {
-            eneGun.Play();
             Instantiate(proj, new Vector3(0,0,0), Quaternion.identity);            
             timebshots = stimebshots;
+            eneGun.Play();
+            StartCoroutine(Gunflash());
         }
         else
         {
             timebshots -= Time.deltaTime;
-
         }
-        //Debug.Log("Attacking player");
+
+    }
+
+    IEnumerator Gunflash()
+    {
+        gunLight.SetActive(true);
+        yield return new WaitForSeconds(1/2);
+        gunLight.SetActive(false);
+        yield return new WaitForSeconds(1/2);
+        gunLight.SetActive(true);
+        yield return new WaitForSeconds(1/2);
+        gunLight.SetActive(false);
+
     }
 
     void CheckAttack()
     {
 
-        if (targetEn.beingAttack!)
+
+        if (attacking == true)
         {
-            //Debug.Log("being attacked");
             enemyState = EnemyStates.Attack;
         }
-        else
+        
+        if (attacking == false)
         {
             enemyState = EnemyStates.Chase;
         }
 
-        /*RaycastHit hit;
-        if (Physics.SphereCast(ene.transform.position, ene.transform.forward, out hit, enRange))
+
+        attackInRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (attackInRange)
         {
-            Debug.Log(hit.transform.name);
+            AttackState();
+
         }
-        */
+        else
+        {
+            ChaseState();
+        }
     }
-    
-
-
 
 }
